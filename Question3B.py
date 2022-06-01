@@ -82,7 +82,7 @@ y = labels
 
 # Transpose XT into shape [N, n] to fit into algorithm
 
-
+# TAKEN FROM MARK ZOLOTAS
 Lambda = np.ones((C, C)) - np.identity(C)
 class_cond_likelihoods = np.array([multivariate_normal.pdf(X, mu[j], Sigma[j]) for j in range(len(Y))])
 
@@ -103,7 +103,7 @@ decisions = np.argmax(class_posteriors, axis=0)+1
 sample_class_counts = np.array([sum(y == j) for j in Y])
 
 # Confusion matrix
-
+# TAKEN FROM MARK ZOLOTAS
 conf_mat = np.zeros((C, C))
 display_mat = np.zeros((C,C))
 for i in range(len(Y)): # Each decision option
@@ -130,6 +130,7 @@ print("Misclassified Samples: ", misclass)
 
 
 
+# TAKEN FROM PCA EXAMPLE BY MARK ZOLOTAS
 # Perform PCA on transposed GMM variable X
 _, _, Z = models.perform_pca(X)
 

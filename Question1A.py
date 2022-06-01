@@ -12,7 +12,7 @@ np.set_printoptions(suppress=True)
 np.random.seed(7)
 
 
-
+# TAKEN FROM MARK ZOLOTAS
 plt.rc('font', size=22)          # controls default text sizes
 plt.rc('axes', titlesize=18)     # fontsize of the axes title
 plt.rc('axes', labelsize=18)    # fontsize of the x and y labels
@@ -45,13 +45,13 @@ labels = np.random.rand(N) >= priors[0]
 L = np.array(range(C))
 Nl = np.array([sum(labels == l) for l in L])
 
-
+# TAKEN FROM MARK ZOLOTAS
 # Draw samples from each class pdf
 X = np.zeros((N, n))
 X[labels == 0, :] =  multivariate_normal.rvs(mu[0], Sigma[0], Nl[0])
 X[labels == 1, :] =  multivariate_normal.rvs(mu[1], Sigma[1], Nl[1])
 
-
+# TAKEN FROM MARK ZOLOTAS
 # Plot the original data and their true labels
 fig = plt.figure(figsize=(10, 10))
 plt.plot(X[labels==0, 0], X[labels==0, 1], 'bo', label="Class 0")
@@ -81,7 +81,7 @@ decisions_map = discriminant_score_erm >= np.log(gamma_map)
 # Get indices and probability estimates of the four decision scenarios:
 # (true negative, false positive, false negative, true positive)
 
-
+# TAKEN FROM MARK ZOLOTAS
 # True Negative Probability
 ind_00_map = np.argwhere((decisions_map==0) & (labels==0))
 p_00_map = len(ind_00_map) / Nl[0]
@@ -100,6 +100,7 @@ prob_error_erm = np.array((p_10_map, p_01_map)).dot(Nl.T / N)
 # Display MAP decisions
 fig = plt.figure(figsize=(10, 10))
 
+# TAKEN FROM MARK ZOLOTAS
 # class 0 circle, class 1 +, correct green, incorrect red
 plt.plot(X[ind_00_map, 0], X[ind_00_map, 1], 'og', label="Correct Class 0")
 plt.plot(X[ind_10_map, 0], X[ind_10_map, 1], 'or', label="Incorrect Class 0")
@@ -128,9 +129,10 @@ print("Total Mumber of Misclassified Samples: {:d}".format(N - correct_class_sam
 
 
 
-
+# TAKEN FROM MARK ZOLOTAS
 from sys import float_info # Threshold smallest positive floating value
 
+# TAKEN FROM MARK ZOLOTAS
 # Generate ROC curve samples
 def estimate_roc(discriminant_score, label):
     Nlabels = np.array((sum(label == 0), sum(label == 1)))
@@ -182,7 +184,7 @@ print("Theoretical Threshold: {:.4f}".format(gamma_map))
 print("Empirical Threshold: {:.4f}".format(math.exp(taus[min_ind])))
 
 
-
+# TAKEN FROM MARK ZOLOTAS
 fig_roc, ax_roc = plt.subplots(figsize=(10, 10))
 ax_roc.plot(roc_erm[0], roc_erm[1])
 ax_roc.plot(roc_map[0], roc_map[1], 'rx', label="Minimum P(Error) MAP", markersize=16)

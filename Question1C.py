@@ -87,6 +87,7 @@ plt.tight_layout()
 
 from sys import float_info # Threshold smallest positive floating value
 
+# TAKEN FROM MARK ZOLOTAS
 # Generate ROC curve samples
 def estimate_roc(discriminant_score, label):
     Nlabels = np.array((sum(label == 0), sum(label == 1)))
@@ -122,6 +123,7 @@ gamma_map = priors[0]/priors[1]
 # Same as:
 # gamma_map = priors[0]/priors[1]
 
+# TAKEN FROM MARK ZOLOTAS
 decisions_map = discriminant_score_erm >= np.log(gamma_map)
 
 # True Negative Probability
@@ -137,7 +139,7 @@ p_01_map = len(ind_01_map) / Nl[1]
 ind_11_map = np.argwhere((decisions_map==1) & (labels==1))
 p_11_map = len(ind_11_map) / Nl[1]
 
-
+# TAKEN FROM MARK ZOLOTAS
 # Construct the ROC for ERM by changing log(gamma)
 roc_erm, _ = estimate_roc(discriminant_score_erm, labels)
 roc_map = np.array((p_10_map, p_11_map))
@@ -153,6 +155,7 @@ ax_roc.set_xlabel(r"Probability of false alarm $P(D=1|L=0)$")
 ax_roc.set_ylabel(r"Probability of correct decision $P(D=1|L=1)$")
 plt.grid(True)
 
+# TAKEN FROM MARK ZOLOTAS
 def perform_lda(X, mu, Sigma, C=2):
     """  Fisher's Linear Discriminant Analysis (LDA) on data from two classes (C=2).
 
@@ -220,7 +223,7 @@ print("Empirical Threshold: {:.4f}".format(math.exp(float(tau_lda[min_ind]))))
 
 
 
-
+# TAKEN FROM MARK ZOLOTAS
 ax_roc.set_xlabel(r"Probability of false alarm $P(D=1|L=0)$")
 ax_roc.set_ylabel(r"Probability of correct decision $P(D=1|L=1)$")
 # Display the estimated ROC curve for LDA and indicate the operating points
@@ -237,6 +240,7 @@ decisions_lda = discriminant_score_lda >= tau_lda[min_ind]
 # Get indices and probability estimates of the four decision scenarios:
 # (true negative, false positive, false negative, true positive)
 
+# TAKEN FROM MARK ZOLOTAS
 # True Negative Probability
 ind_00_lda = np.argwhere((decisions_lda==0) & (labels==0))
 p_00_lda = len(ind_00_lda) / Nl[0]

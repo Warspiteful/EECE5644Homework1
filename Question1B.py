@@ -13,7 +13,7 @@ np.set_printoptions(suppress=True)
 np.random.seed(7)
 
 
-
+# TAKEN FROM MARK ZOLOTAS
 plt.rc('font', size=22)          # controls default text sizes
 plt.rc('axes', titlesize=18)     # fontsize of the axes title
 plt.rc('axes', labelsize=18)    # fontsize of the x and y labels
@@ -45,6 +45,7 @@ labels = np.random.rand(N) >= priors[0]
 L = np.array(range(C))
 Nl = np.array([sum(labels == l) for l in L])
 
+# TAKEN FROM MARK ZOLOTAS
 # Draw samples from each class pdf
 X = np.zeros((N, n))
 X[labels == 0, :] =  multivariate_normal.rvs(mu[0], Sigma[0], Nl[0])
@@ -81,7 +82,7 @@ decisions_map = discriminant_score_erm >= np.log(gamma_map)
 # Get indices and probability estimates of the four decision scenarios:
 # (true negative, false positive, false negative, true positive)
 
-
+# TAKEN FROM MARK ZOLOTAS
 # True Negative Probability
 ind_00_map = np.argwhere((decisions_map==0) & (labels==0))
 p_00_map = len(ind_00_map) / Nl[0]

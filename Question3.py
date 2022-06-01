@@ -6,7 +6,9 @@ from scipy.stats import multivariate_normal # MVN not univariate
 
 import pandas
 
-from modules import models, prob_utils
+
+# TAKEN FROM MARK ZOLOTAS
+from modules import models,
 
 from collections import defaultdict
 
@@ -121,6 +123,9 @@ print("Minimum Probability of Error: ", prob_error)
 print("Misclassified Samples: ", misclass)
 
 
+
+
+# TAKEN FROM PCA EXAMPLE BY MARK ZOLOTAS
 
 # Perform PCA on transposed GMM variable X
 _, _, Z = models.perform_pca(X)

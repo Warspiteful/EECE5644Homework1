@@ -51,6 +51,7 @@ y = np.zeros(N)
 u = np.random.rand(N)
 thresholds = np.cumsum(priors)
 
+# TAKEN FROM MARK ZOLOTAS
 for c in range(C):
     c_ind = np.argwhere(u <= thresholds[c])[:, 0]  # Get randomly sampled indices for this component
     c_N = len(c_ind)  # No. of samples in this component
@@ -115,6 +116,7 @@ marker_colors = 'brgmy'
 # Get sample class counts
 sample_class_counts = np.array([sum(y == j) for j in Y])
 
+# TAKEN FROM MARK ZOLOTAS
 # Confusion matrix
 conf_mat = np.zeros((C, C))
 display_mat = np.zeros((C, C))
@@ -132,6 +134,7 @@ for i in Y: # Each decision option
         if i != j:
             plt.plot(X[ind_ij, 0], X[ind_ij, 1], marker, markersize=16)
             
+
 
 #Confusion Matrix
 # TP | FN
@@ -154,6 +157,7 @@ plt.show()
 Nl = np.array([sum(y == l) for l in Y])
 
 
+# TAKEN FROM MARK ZOLOTAS
 # True Negative Probability# True Negative Probability
 ind_00_map = np.argwhere((decisions==0) & (y==0))
 p_00_map = len(ind_00_map) / Nl[0]
@@ -199,6 +203,7 @@ print("Estimated expected loss", cumulative_loss / N)
 # Display MAP decisions
 fig = plt.figure(figsize=(10, 10))
 
+# TAKEN FROM MARK ZOLOTAS
 # class 0 circle, class 1 +, correct green, incorrect red
 plt.plot(X[ind_00_map, 0], X[ind_00_map, 1], 'og', label="Correct Class 0")
 plt.plot(X[ind_0x_map, 0], X[ind_0x_map, 1], 'or', label="Incorrect Class 0")
